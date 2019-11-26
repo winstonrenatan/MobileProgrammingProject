@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     //Initiating variables
     var currentPath: String? = null
     val TAKE_PICTURE = 1
-    val SELECT_PICTURE = 2
     //Optical Character Recognizer
     private lateinit var textRecognizer: TextRecognizer
     //Text To Speech
@@ -52,9 +51,6 @@ class MainActivity : AppCompatActivity() {
         button_camera.setOnClickListener {
             dispatchCameraIntent()
         }
-        button_gallery.setOnClickListener{
-            dispatchGalleryIntent()
-        }
         button_detect_text.setOnClickListener {
             detectTextFromImage()
         }
@@ -69,25 +65,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    //Either take picture or select picture is selected
+    //Take picture
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == TAKE_PICTURE && resultCode == Activity.RESULT_OK) {
             try {
                 val file = File(currentPath)
                 val uri = Uri.fromFile(file)
-                imageView.setImageURI(uri)
-            }
-            catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-        if (requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK) {
-            try {
-                val uri = data!!.data
-                /*
-                val file = File(uri.getPath())
-                currentPath = file.getPath()
-                 */
                 imageView.setImageURI(uri)
             }
             catch (e: IOException) {
@@ -125,14 +108,6 @@ class MainActivity : AppCompatActivity() {
         var image = File.createTempFile(imageName, ".jpg", storageDir)
         currentPath = image.absolutePath
         return image
-    }
-
-    //Function to access the gallery
-    fun dispatchGalleryIntent() {
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), SELECT_PICTURE)
     }
 
     //Function to detect what is the text in the given picture

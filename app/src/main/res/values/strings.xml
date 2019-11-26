@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">OCalculatoR</string>
     <string name="initial_words">
-        To use the app: \n
-        1. Take a picture from camera buton or easily select one from the gallery. \n
-        2. Click on detect text button to see what words are contained in the picture selected. \n
-        3. If there is a simple equation on the detected text, you can press on calculate button, to see the result. \n
+        Welcome to OCalculatoR, here is the guide to use the app: \n
+        1. Take a picture from CAMERA button. \n
+        2. Click on DETECT TEXT button to see what words are contained in the picture selected. \n
+        3. If there is a simple equation on the detected text, you can press on CALCULATE button, to see the result. \n
+        4. You also can hear what the words are using the SPEAK button and stop it using STOP button. \n
         ENJOY :) \n
     </string>
 </resources>

@@ -18,14 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/camera_icon"
             android:text="CAMERA" />
-
-        <Button
-            android:id="@+id/button_gallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="GALLERY" />
     </LinearLayout>
 
     <!-- BUTTONS FOR DETECT TEXT USING OCR AND CALCULATE EQUATIONS -->
@@ -39,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/search_icon"
             android:text="DETECT TEXT" />
 
         <Button
@@ -46,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/pencil_icon"
             android:text="CALCULATE" />
     </LinearLayout>
 
