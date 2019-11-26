@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <!-- BUTTONS TO ACCESS CAMERA AND GALLERY -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CAMERA" />
+
+        <Button
+            android:id="@+id/button_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="GALLERY" />
+    </LinearLayout>
+
+    <!-- BUTTONS FOR DETECT TEXT USING OCR AND CALCULATE EQUATIONS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_detect_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="DETECT TEXT" />
+
+        <Button
+            android:id="@+id/button_calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CALCULATE" />
+    </LinearLayout>
+
+    <!-- BUTTONS FOR TEXT TO SPEECH -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_speak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/speak_icon"
+            android:text="SPEAK" />
+
+        <Button
+            android:id="@+id/button_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/stop_icon"
+            android:text="STOP" />
+
+    </LinearLayout>
+
+    <!-- SHOW DETECTED TEXT -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="100sp">
+
+        <TextView
+            android:id="@+id/detected_words"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/initial_words"
+            android:textSize="12sp" />
+    </ScrollView>
+
+    <!-- DISPLAY IMAGE BEING CAPTURED -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
