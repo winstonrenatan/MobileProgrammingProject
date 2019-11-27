@@ -112,27 +112,40 @@ class MainActivity : AppCompatActivity() {
 
     //Function to detect what is the text in the given picture
     fun detectTextFromImage() {
-        //Change Image to Bitmap Type
-        var bitmap = BitmapFactory.decodeFile(currentPath)
-        var frame = Frame.Builder().setBitmap(bitmap).build()
-
-        //  Create Text Recognizer
-        textRecognizer = TextRecognizer.Builder(this).build()
-
-        if (!textRecognizer.isOperational) {
-            Toast.makeText(this, "Could not get the Text", Toast.LENGTH_SHORT).show()
+        //If there is no captured picture detected
+        if (currentPath==null) {
+            Toast.makeText(this, "There is no picture to be detected.", Toast.LENGTH_SHORT).show()
         }
+        //Enter when there is picture found
         else {
-            // Detector Processor (To make available camera to text)
-            val items = textRecognizer.detect(frame)
-            val stringBuilder = StringBuilder()
-            for (i in 0 until items.size()) {
-                val item = items.valueAt(i)
-                stringBuilder.append(item.value)
-                stringBuilder.append("\n")
+            //Change Image to Bitmap Type
+            var bitmap = BitmapFactory.decodeFile(currentPath)
+            var frame = Frame.Builder().setBitmap(bitmap).build()
+
+            //  Create Text Recognizer
+            textRecognizer = TextRecognizer.Builder(this).build()
+
+            if (!textRecognizer.isOperational) {
+                Toast.makeText(this, "Could not get the text.", Toast.LENGTH_SHORT).show()
             }
-            //Display the text detected
-            detected_words.text = stringBuilder.toString()
+            else {
+                // Detector Processor (To make available camera to text)
+                val items = textRecognizer.detect(frame)
+                val stringBuilder = StringBuilder()
+                for (i in 0 until items.size()) {
+                    //Find value of text in location i
+                    val item = items.valueAt(i)
+                    //Add the value to the stringBuilder previously made
+                    stringBuilder.append(item.value)
+                    stringBuilder.append("\n")
+                }
+                //Display the text detected
+                detected_words.text = stringBuilder.toString()
+                //If there is no text detected from the picture
+                if (detected_words.text=="") {
+                    Toast.makeText(this, "There is no text in the picture captured.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -172,11 +185,15 @@ class MainActivity : AppCompatActivity() {
         val stringLength = stringInput.length
         // Do the simple math equation (addition, substitution, multiplication, and division)
         if(stringInput[equationLocation]=='+') {
+            //Take the part of the first number and second number from the detected words string
             var numStringA:String = stringInput.subSequence(0,equationLocation).toString()
             var numStringB:String = stringInput.subSequence(equationLocation+1,stringLength-1).toString()
+            //Change the substring to Integer so it can be calculated
             var numA = numStringA.toInt()
             var numB = numStringB.toInt()
+            //Calculate the equation given
             var result = numA + numB
+            //Show the result using toast
             Toast.makeText(this,"$numA + $numB = $result", Toast.LENGTH_SHORT).show()
         }
         else if(stringInput[equationLocation]=='-') {
@@ -210,7 +227,7 @@ class MainActivity : AppCompatActivity() {
         val toSpeak = detected_words.text.toString()
         if (toSpeak == "") {
             //If there is no text
-            Toast.makeText(this, "Enter the text please.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "There is no text to be read.", Toast.LENGTH_SHORT).show()
         }
         else {
             //If there is text
